@@ -3594,7 +3594,7 @@ figcaption {
   height: 1px;
   margin-top: 1px;
   position: absolute;
-  inset: 1rem 0% auto;
+  inset: 1.3rem 0% auto;
 }
 .anm_text_btn_underline.dark {
   position: static;
