@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<!-- Designed & Developed by Makewithus -->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Coming Soon</title>
+
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    background: #0c0c0c;
+    font-family: "Poppins", sans-serif;
+    color: #fff;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .container {
+    max-width: 500px;
+    padding: 20px;
+  }
+
+  h1 {
+    font-size: 48px;
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+  }
+
+  p {
+    font-size: 18px;
+    opacity: 0.7;
+  }
+
+  .timer {
+    margin-top: 30px;
+    font-size: 28px;
+    letter-spacing: 2px;
+    font-weight: 600;
+  }
+
+  .subscribe {
+    margin-top: 40px;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+  }
+
+  input {
+    padding: 12px 15px;
+    border-radius: 6px;
+    border: none;
+    outline: none;
+    width: 65%;
+    background: #1d1d1d;
+    color: #fff;
+    font-size: 15px;
+  }
+
+  button {
+    padding: 12px 18px;
+    border: none;
+    background: #5a5cff;
+    color: white;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+
+  button:hover {
+    background: #4a4df0;
+  }
+
+  .popup {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #222;
+    padding: 15px 20px;
+    border-radius: 8px;
+    color: white;
+    opacity: 0;
+    transition: 0.3s ease;
+    box-shadow: 0 0 20px rgba(0,0,0,0.3);
+    z-index: 9999;
+  }
+</style>
+</head>
+
+<body>
+
+<div class="container">
+  <h1>Coming Soon</h1>
+  <p>We’re working hard to bring something amazing. Stay tuned!</p>
+
+
+</div>
+
+<div id="popup" class="popup"></div>
+
+<script>
+  // Countdown Timer (set target date here)
+  const launchDate = new Date("2025-02-01T00:00:00").getTime();
+
+  setInterval(() => {
+    const now = new Date().getTime();
+    const diff = launchDate - now;
+
+    if (diff <= 0) {
+      document.getElementById("countdown").innerText = "LAUNCHED!";
+      return;
+    }
+
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+    const minutes = Math.floor((diff / 1000 / 60) % 60);
+    const seconds = Math.floor((diff / 1000) % 60);
+
+    document.getElementById("countdown").innerText =
+      `${days} : ${hours} : ${minutes} : ${seconds}`;
+  }, 1000);
+
+
+  // Popup Message
+  function showPopup(msg, success = true) {
+    const popup = document.getElementById("popup");
+    popup.textContent = msg;
+    popup.style.background = success ? "#28a745" : "#b72020";
+    popup.style.opacity = "1";
+
+    setTimeout(() => {
+      popup.style.opacity = "0";
+    }, 2500);
+  }
+
+  // Fake Subscribe Handler
+  function subscribe() {
+    const email = document.getElementById("email").value.trim();
+
+    if (!email) {
+      showPopup("Please enter a valid email", false);
+      return;
+    }
+
+    showPopup("Thanks! We'll notify you soon.");
+    document.getElementById("email").value = "";
+  }
+</script>
+
+</body>
+</html>
